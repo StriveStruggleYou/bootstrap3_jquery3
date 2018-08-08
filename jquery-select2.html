@@ -26,6 +26,21 @@
     </label>
 </div>
 
+
+
+<div class="row">
+    <label for="id_label_single">
+        Click this to highlight the single select element
+        <select class="form-control" multiple="multiple" id="select_mult">
+            <option selected="selected">orange</option>
+            <option>white</option>
+            <option selected="selected">purple</option>
+        </select>
+    </label>
+</div>
+
+
+
 </body>
 
 <!-- 全局js -->
@@ -86,6 +101,12 @@
         console.log(e);
         alert("select!!!"+e.params.data.id);
     });
+
+
+    $("#select_mult").select2({
+        tags: true,
+        tokenSeparators: [',', ' ']
+    })
 
 </script>
 
