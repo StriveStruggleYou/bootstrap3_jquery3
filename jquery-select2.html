@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins/select2/select2.css">
+    <link rel="stylesheet" href="css/plugins/select2/select2-bootstrap.css">
+</head>
+<body>
+<!--<select id="select2">-->
+<!--<option>1</option>-->
+<!--</select>-->
+<div class="row">
+    Click this to highlight the single select element
+    <label for="id_label_single">
+        <select class="js-example-basic-single js-states form-control" id="id_label_single"></select>
+    </label>
+</div>
+
+
+<div class="row">
+    <label for="id_label_single">
+        Click this to highlight the single select element
+        <select class="js-data-example-ajax" style="width: 350px"></select>
+    </label>
+</div>
+
+</body>
+
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+
+<script src="js/plugins/select2/select2.js"></script>
+
+
+<script>
+    var data = [
+        {
+            id: 0,
+            text: 'enhancement'
+        },
+        {
+            id: 1,
+            text: 'bug'
+        },
+        {
+            id: 2,
+            text: 'duplicate'
+        },
+        {
+            id: 3,
+            text: 'invalid'
+        },
+        {
+            id: 4,
+            text: 'wontfix'
+        }
+    ];
+
+    $(".js-example-basic-single").select2({
+        data: data,
+        theme: "bootstrap"
+    })
+
+
+
+    $('.js-data-example-ajax').select2({
+        ajax: {
+            url: 'http://127.0.0.1:9090/machine/cluster/query',
+            processResults: function (data) {
+                // Tranforms the top-level key of the response object from 'items' to 'results'
+                return {
+                    results: data.results
+                };
+            }
+        }
+    });
+
+
+    //1.绑定事件，2.获取选中值
+
+    $('.js-data-example-ajax').on('select2:select', function (e) {
+
+        console.log(e);
+        alert("select!!!"+e.params.data.id);
+    });
+
+</script>
+
+</html>
