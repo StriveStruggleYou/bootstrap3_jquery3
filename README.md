@@ -1,0 +1,2 @@
+# bootstrap3_jquery_plugin
+使用bootstrap进行布局的同时，结合一些jquery的插件
